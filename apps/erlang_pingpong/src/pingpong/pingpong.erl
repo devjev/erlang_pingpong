@@ -22,13 +22,19 @@ ping(_Signal) -> error(invalid_argument).
 
 init([]) -> {ok, #{}}.
 
+% Internal functions ---------------------------------------------------------
+get_sender() ->
+	Caller = erlang:self(),
+	Node = erlang:node(Caller),
+	{Node, Caller}.
+
 % Handle calls ---------------------------------------------------------------
 
 handle_call(ping, _From, State) ->
-	log_manager:log({self(), "ping -> pong"}),
+	log_manager:log({get_sender(), "ping -> pong"}),
 	{reply, pong, State};
 handle_call(pong, _From, State) ->
-	log_manager:log({self(), "pong -> ping"}),
+	log_manager:log({get_sender(), "pong -> ping"}),
 	{reply, ping, State};
 handle_call(_Request, _From, State) ->
 	{reply, ok, State}.
