@@ -1,7 +1,7 @@
 erlang_pingpong
 =====
 
-A asdasdas
+A hello world of Erlang applications.
 
 Build
 -----
