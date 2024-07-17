@@ -22,7 +22,7 @@ init([]) ->
 				    restart => permanent,
 				    shutdown => 5000,
 				    type => worker,
-				    modules => [ping]},
+				    modules => [pingpong]},
 
 				  #{id => log_manager,
 				    start => {log_manager, start_link, [[terminal_handler, file_logging_handler]]},
